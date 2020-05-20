@@ -23,8 +23,40 @@
   <body>
 
     <div class="container mt-5">
-      <h1>News</h1>
+      <h1>Chilango Times</h1>
+      <h2>Weather Report</h2>
+
+      <div class="row.container-md">
+        <p> The current weather in Mexico City is <%= @current %>º and feels like <%= @current_fl %>º. </p>
+      </div>
+      <% for f in @forecast %>
+        <div class="row.container-md">
+            <p>The forecast for <%= Date.strptime(f["dt"].to_s,'%s') %> is <%= f["temp"]["day"]%>º, 
+            with a minimum of <%= f["temp"]["min"] %>º and a maximum of <%= f["temp"]["max"] %>º.</p>
+        </div>
+            
+      <% end %>  
+
+      <h1>Top News</h1>
+
+     <% for title in @top_news_titles %>
+        <div class="row.container-md">
+            <p> <%= title["title"] %> <a href= <%= title["url"] %>> (Go to article) </a> </p>
+            
+        </div>
+            
+      <% end %>  
+
+    
+      <div class="row .container-md">
+        <p>
+            <a href="/" class="btn btn-success"> Refresh </a>
+        </p>
+      </div>
+      
     </div>
+
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
